@@ -7,3 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import './Home.css';
 import logo from './HomePageLogo.png'
+
+const HomeScreen = ({ docId, setDocId }) => {
+  const inputHandler = (e) => {
+    setDocId(e.target.value);
+  };
