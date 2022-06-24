@@ -7,4 +7,5 @@ import Toast from 'react-bootstrap/Toast'
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import logo from './HomePageLogo.png'
+const HEROKU_ADD = 'https://write-it-editor-server.herokuapp.com/';
 
