@@ -95,7 +95,6 @@ const TextEditor = () => {
     };
   }, [socket, quill]);
 
-
 useEffect(() => {
     if (socket == null || quill == null) return;
     socket.once('load-document', (document) => {
@@ -104,5 +103,22 @@ useEffect(() => {
     });
     socket.emit('get-document', documentId);
   }, [socket, quill, documentId])
+  //adding the last stepup of the editor
+return (
+<div>
+//creating button that will copy the ID of the document
+<Button variant="danger" onClick={() => {
+setShow(true)
+navigator.clipboard.writeText(documentId)
+}} style={{ "position": "fixed", "right": 0, "margin-right": "20px" ,"background-color":" #e75480"}}>
+Copy ID
+</Button>
+//creating a button that will refer to the home page back again
+<Link to="/" className="btn btn-danger" style={{ "position": "fixed", "margin-left": "30px","background-color":" #e75480" }}>Home</Link>
+//add a div for placing the main editor in it with the toolbar & everything related to it
+<div className="container" ref={WrapperRef}></div>
+</div>
+);
+};
 
-
+export default TextEditor;
