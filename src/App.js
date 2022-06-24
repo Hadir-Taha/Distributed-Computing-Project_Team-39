@@ -11,7 +11,15 @@ import { useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 
 function App() {
+    const [Id, setId] = useState('');
   return (
+      <Router>
+      <Routes>
+               <Route path="/" element={ <HomeScreen docId={docId} setDocId={setDocId} />} />
+               <Route path="/rooms" element={  <Navigate to={`/rooms/documents/${uuidV4()}`} />} />
+               <Route path="/rooms/documents/:id" element={ <TextEditor />} />
+      </Routes>
+    </Router>
 
   );
 }
