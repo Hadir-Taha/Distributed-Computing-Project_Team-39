@@ -22,3 +22,6 @@ body {
         background-position: 0% 50%;
     }
 }
+.navbar,.navbar-default {
+    background-color: #e75480;
+}
