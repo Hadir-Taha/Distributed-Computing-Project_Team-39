@@ -32,4 +32,23 @@ const TextEditor = () => {
   const [quill, setQuill] = useState();
  //return ID from URL & store it in the documentID using Useparams()
   const { id: documentId } = useParams();
-  }
+  //set up the editor
+  const WrapperRef = useCallback((wrapper) => {
+    if (wrapper === null) return;
+    wrapper.innerHTML = '';
+    const editor = document.createElement('div');
+    wrapper.append(editor);
+    const q = new Quill(editor, {
+      theme: 'snow',
+      modules: { toolbar: TOOLBAR_OPTIONS },
+      history: {
+        delay: 2000,
+        userOnly: true,
+      },
+    });
+    q.disable();
+    q.setText('');
+    setQuill(q);
+  }, []);
+
+  };
