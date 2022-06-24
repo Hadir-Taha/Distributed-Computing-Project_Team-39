@@ -24,3 +24,12 @@ const TOOLBAR_OPTIONS = [
             ["image", "blockquote", "code-block","link","video","formula"], //to add various options rather than text
             ["clean"],
 ];
+//Creation of the object of the texteditor component
+const TextEditor = () => {
+//create socket variable using react-hook functionality
+  const [socket, setSocket] = useState();
+ //create quill variable using react-hook functionality
+  const [quill, setQuill] = useState();
+ //return ID from URL & store it in the documentID using Useparams()
+  const { id: documentId } = useParams();
+  }
