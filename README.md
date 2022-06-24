@@ -1,3 +1,14 @@
+
+# How to run the project
+First thing, download the zip file of the code & open it with suitable code editor. 
+Then write **npm install** in the terminal 
+## To install the node modules. 
+write **npm install** in the terminal 
+## To open it using localhost 
+write in the terminal **npm start**
+## To open it using server 
+write **heroku open** in the terminal
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
