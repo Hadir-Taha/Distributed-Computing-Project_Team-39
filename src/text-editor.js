@@ -50,22 +50,22 @@ const TextEditor = () => {
     q.setText('');
     setQuill(q);
   }, []);
- // Setting up the connection to server
+ // prepare the server socket
   useEffect(() => {
-    const s = io(HEROKU_ADD);
-    setSocket(s);
+    const s = io(HEROKU_ADD); // s variable that store the server url
+    setSocket(s);             // set the socket to the variable s
     return () => {
       s.disconnect();
     };
   }, []);
-  // capturing the changes and sending it to the server
+  // hold the updates made by the user and transfer it to the server
   useEffect(() => {
-    if (socket == null || quill == null) return;
-    const handler = (delta, oldDelta, source) => {
+    if (socket == null || quill == null) return;   // check if the socket and the quill have values (not null)
+    const handler = (delta, oldDelta, source) => { // create handler function with parameters (delta->new data,oldDelta->old data writen in the editor,source->user)
       if (source !== 'user') return;
-      socket.emit('send-changes', delta);
+      socket.emit('send-changes', delta);          // send updates to the server
     };
-    quill.on('text-change', handler);
+    quill.on('text-change', handler); // listen to the updates made by the user & send it to the handler which will then send it to the server (socket)
     return () => {
       quill.off('text-change', handler);
     };
