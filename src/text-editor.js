@@ -71,3 +71,16 @@ const TextEditor = () => {
     };
   }, [socket, quill]);
   };
+
+// Reflecting changes to the document, the same idea as broadcasting changes to all the users that share that document
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    const handler = (delta) => {
+      quill.updateContents(delta);
+    };
+    socket.on('receive-changes', handler);
+
+    return () => {
+      socket.off('receive-changes', handler);
+    };
+  }, [socket, quill]);
