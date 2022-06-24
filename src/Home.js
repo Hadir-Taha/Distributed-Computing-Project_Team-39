@@ -12,3 +12,12 @@ const HomeScreen = ({ docId, setDocId }) => {
   const inputHandler = (e) => {
     setDocId(e.target.value);
   };
+return (
+    <div className="parent-container">
+      <Navbar variant="dark" sticky="top">
+        <Navbar.Brand  style={{ "font-weight":"bold", "font-style":"italic" }}>Write It!</Navbar.Brand>
+      </Navbar>
+       );
+};
+
+export default HomeScreen
