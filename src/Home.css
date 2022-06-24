@@ -47,6 +47,13 @@ body {
   outline: none;
   text-align:center;
 }
+.home-container {
+  font-family: Cambria;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .home-card img {
   display: block;
   margin-left: auto;
