@@ -50,5 +50,24 @@ const TextEditor = () => {
     q.setText('');
     setQuill(q);
   }, []);
-
+ // Setting up the connection to server
+  useEffect(() => {
+    const s = io(HEROKU_ADD);
+    setSocket(s);
+    return () => {
+      s.disconnect();
+    };
+  }, []);
+  // capturing the changes and sending it to the server
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    const handler = (delta, oldDelta, source) => {
+      if (source !== 'user') return;
+      socket.emit('send-changes', delta);
+    };
+    quill.on('text-change', handler);
+    return () => {
+      quill.off('text-change', handler);
+    };
+  }, [socket, quill]);
   };
