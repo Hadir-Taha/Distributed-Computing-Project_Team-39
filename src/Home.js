@@ -17,6 +17,16 @@ return (
       <Navbar variant="dark" sticky="top">
         <Navbar.Brand  style={{ "font-weight":"bold", "font-style":"italic" }}>Write It!</Navbar.Brand>
       </Navbar>
+      <div className="home-container">
+        <Card style={{ width: '110rem' }} className="home-card">
+          <Card.Img variant="top"  src={logo} style={{ height: '100%', width: "40rem" }} />
+          <Card.Body style={{ width: '22rem' }}>
+            <input
+              value={docId}
+              onChange={inputHandler}
+              placeholder="Document ID"
+              type="text"
+            />
        );
 };
 
