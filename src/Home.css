@@ -53,4 +53,18 @@ body {
   margin-right: auto;
   height: '100%';
 }
-
+.home-btns{
+  margin-bottom: 10px;
+  width: 150px;
+  margin-left: 75px;
+}
+.home-btns-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.about-btn{
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
