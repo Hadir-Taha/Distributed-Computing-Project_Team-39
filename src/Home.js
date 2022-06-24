@@ -27,6 +27,18 @@ return (
               placeholder="Document ID"
               type="text"
             />
+              <div className="home-btns-wrapper">
+              <Link to={docId && `/rooms/documents/${docId}`}>
+              <Button variant="dark" className="home-btns" >Open Document</Button>
+              </Link>
+              <Link to="/rooms">
+               <Button variant="dark" className="home-btns">New Document</Button>
+              </Link>
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
        );
 };
 
