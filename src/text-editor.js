@@ -84,3 +84,14 @@ const TextEditor = () => {
       socket.off('receive-changes', handler);
     };
   }, [socket, quill]);
+
+//Save the contents of document every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      socket.emit('save-doc', quill.getContents());
+    }, 1500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [socket, quill]);
