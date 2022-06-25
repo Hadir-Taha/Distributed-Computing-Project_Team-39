@@ -1,30 +1,48 @@
-import TextEditor from './text-editor';
-import HomeScreen from './Home';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import React from "react"
+import { Link } from 'react-router'
 import { useState } from 'react';
+import Signup from "./Signup"
+import { Container } from "react-bootstrap"
+import { AuthProvider } from "./AuthContext"
+import { BrowserRouter as Router, Switch, Route , Redirect} from "react-router-dom"
+import Dashboard from "./Dashboard"
+import Login from "./Login"
+import PrivateRoute from "./PrivateRoute"
+import ForgotPassword from "./ForgotPassword"
+import UpdateProfile from "./UpdateProfile"
 import { v4 as uuidV4 } from 'uuid';
-//defining th different paths & where each path will lead us to
-//path "/" will lead us to the home page
-//path "/rooms" will lead us to the texteditor but with random id
-// path "/rooms/documents/:id" will lead us to the texteditor with specific id for certain document
+import HomeScreen from "./Home"
+import TextEditor from "./text-editor"
+//creation of App fn using socket.io & react hooks functionalities
 function App() {
-//creation of variable docID that will hold empty value at the beginning
-    const [docId, setDocId] = useState('');
+const [docId, setDocId] = useState('');
   return (
-      <Router>
-      <Routes>
-               <Route path="/" element={ <HomeScreen docId={docId} setDocId={setDocId} />} />
-               <Route path="/rooms" element={  <Navigate to={`/rooms/documents/${uuidV4()}`} />} />
-               <Route path="/rooms/documents/:id" element={ <TextEditor />} />
-      </Routes>
-    </Router>
-
-  );
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="w-100" style={{ maxWidth: "400px" }}>
+        <Router>
+          <AuthProvider>
+            <Switch>
+            //defining the paths for the different pages
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/home"> <HomeScreen docId={docId} setDocId={setDocId} /> </PrivateRoute>
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route exact path="/rooms">
+          <Redirect to={`/rooms/documents/${uuidV4()}`} />
+        </Route>
+        <Route path="/rooms/documents/:id">
+          <TextEditor />
+        </Route>
+            </Switch>
+          </AuthProvider>
+        </Router>
+      </div>
+    </Container>
+  )
 }
 
-export default App;
+export default App
