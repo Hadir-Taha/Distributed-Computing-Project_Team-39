@@ -20,3 +20,10 @@ export function AuthProvider({ children }) {
   function logout() {
     return auth.signOut()
   }
+function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email)
+  }
+
+  function updateEmail(email) {
+    return currentUser.updateEmail(email)
+  }
