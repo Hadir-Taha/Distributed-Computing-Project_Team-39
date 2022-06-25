@@ -15,7 +15,7 @@ const HomeScreen = ({ docId, setDocId }) => {
 return (
     <div className="parent-container">
       <Navbar variant="dark" sticky="top">
-        <Navbar.Brand  style={{ "font-weight":"bold","font-size":"30px", "font-style":"italic", "color" : "white","margin-left":"2in"}}>Write It!</Navbar.Brand>
+        <Navbar.Brand  style={{ "font-weight":"bold","font-size":"30px", "font-style":"italic", "color" : "white","margin-left":"1in"}}>Write It!</Navbar.Brand>
       </Navbar>
       <div className="home-container">
         <Card style={{ width: '110rem' }} className="home-card">
