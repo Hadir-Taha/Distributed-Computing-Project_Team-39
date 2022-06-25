@@ -13,7 +13,7 @@
     "react-bootstrap-accordion": "^1.0.0",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.1",
     "web-vitals-reporter": "^1.0.0"
