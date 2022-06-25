@@ -13,6 +13,7 @@ body {
 }
 .navbar,.navbar-default {
     background-color: #e75480;
+    height:50px;
 }
 .home-card {
   border-radius: 8%;
@@ -53,7 +54,17 @@ body {
 .home-btns{
   margin-bottom: 10px;
   width: 150px;
+  height:50px;
   margin-left: 75px;
+  background-color: #555555;
+  border-radius:7px;
+  border-color:#555555;
+  color:white;
+  font-family:Helvetica;
+  font-weight: bold;
+}
+.home-btns:hover{
+ background-color: #333333;
 }
 .home-btns-wrapper {
   display: flex;

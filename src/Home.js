@@ -15,7 +15,7 @@ const HomeScreen = ({ docId, setDocId }) => {
 return (
     <div className="parent-container">
       <Navbar variant="dark" sticky="top">
-        <Navbar.Brand  style={{ "font-weight":"bold", "font-style":"italic", "color" : "white"}}>Write It!</Navbar.Brand>
+        <Navbar.Brand  style={{ "font-weight":"bold","font-size":"30px", "font-style":"italic", "color" : "white"}}>Write It!</Navbar.Brand>
       </Navbar>
       <div className="home-container">
         <Card style={{ width: '110rem' }} className="home-card">
@@ -29,7 +29,7 @@ return (
             />
               <div className="home-btns-wrapper">
               <Link to={docId && `/rooms/documents/${docId}`}>
-              <Button variant="dark" className="home-btns" >Open Document</Button>
+              <Button className="home-btns" >Open Document</Button>
               </Link>
               <Link to="/rooms">
                <Button variant="dark" className="home-btns">New Document</Button>
