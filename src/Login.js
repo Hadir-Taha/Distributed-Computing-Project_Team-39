@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "./AuthContext"
 import { Link, useNavigate } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
+
 export default function Login() {
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -10,8 +11,10 @@ export default function Login() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useNavigate()
+
   async function handleSubmit(e) {
     e.preventDefault()
+
     try {
       setError("")
       setLoading(true)
@@ -20,8 +23,10 @@ export default function Login() {
     } catch {
       setError("Failed to log in")
     }
+
     setLoading(false)
   }
+
   return (
     <>
       <Card>

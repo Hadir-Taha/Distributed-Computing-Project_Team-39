@@ -13,7 +13,7 @@ export default function UpdateProfile() {
   const [loading, setLoading] = useState(false)
   const history = useNavigate()
 
-function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
@@ -41,6 +41,7 @@ function handleSubmit(e) {
         setLoading(false)
       })
   }
+
   return (
     <>
       <Card>
@@ -84,5 +85,4 @@ function handleSubmit(e) {
       </div>
     </>
   )
-
 }

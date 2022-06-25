@@ -9,8 +9,10 @@ export default function ForgotPassword() {
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
+
   async function handleSubmit(e) {
     e.preventDefault()
+
     try {
       setMessage("")
       setError("")
@@ -20,8 +22,10 @@ export default function ForgotPassword() {
     } catch {
       setError("Failed to reset password")
     }
+
     setLoading(false)
   }
+
   return (
     <>
       <Card>

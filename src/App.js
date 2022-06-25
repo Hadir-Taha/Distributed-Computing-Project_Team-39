@@ -13,7 +13,8 @@ import UpdateProfile from "./UpdateProfile"
 import { v4 as uuidV4 } from 'uuid';
 import HomeScreen from "./Home"
 import TextEditor from "./text-editor"
-//creation of App fn using socket.io & react hooks functionalities
+
+
 function App() {
 const [docId, setDocId] = useState('');
   return (
@@ -25,7 +26,6 @@ const [docId, setDocId] = useState('');
         <Router>
           <AuthProvider>
             <Routes>
-            //defining the paths for the different pages
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/home"> <HomeScreen docId={docId} setDocId={setDocId} /> </PrivateRoute>
               <Route path="/signup" component={Signup} />
