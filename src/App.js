@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Signup from "./Signup"
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./AuthContext"
-import { BrowserRouter as Router, Switch, Route , Navigate} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route , Navigate} from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
@@ -24,7 +24,7 @@ const [docId, setDocId] = useState('');
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Router>
           <AuthProvider>
-            <Switch>
+            <Routes>
             //defining the paths for the different pages
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/home"> <HomeScreen docId={docId} setDocId={setDocId} /> </PrivateRoute>
@@ -37,7 +37,7 @@ const [docId, setDocId] = useState('');
         <Route path="/rooms/documents/:id">
           <TextEditor />
         </Route>
-            </Switch>
+            </Routes>
           </AuthProvider>
         </Router>
       </div>
