@@ -15,11 +15,11 @@ const HomeScreen = ({ docId, setDocId }) => {
 return (
     <div className="parent-container">
       <Navbar variant="dark" sticky="top">
-        <Navbar.Brand  style={{ "font-weight":"bold","font-size":"30px", "font-style":"italic", "color" : "white"}}>Write It!</Navbar.Brand>
+        <Navbar.Brand  style={{ "font-weight":"bold","font-size":"30px", "font-style":"italic", "color" : "white","margin-left":"2in"}}>Write It!</Navbar.Brand>
       </Navbar>
       <div className="home-container">
         <Card style={{ width: '110rem' }} className="home-card">
-          <Card.Img variant="top"  src={logo} style={{ height: '100%', width: "40rem" }} />
+          <Card.Img variant="top"  src={logo} style={{ height: '100%', width: "40rem" , "margin-left":"-1.2in","margin-top":"0.8in"}} />
           <Card.Body style={{ width: '22rem' }}>
             <input
               value={docId}
