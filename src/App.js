@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route , Navigate} from "react-router-d
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
-import ForgotPassword from "./ForgotPassword"
+import ForgotPassword from "./ForgetPassword"
 import UpdateProfile from "./UpdateProfile"
 import { v4 as uuidV4 } from 'uuid';
 import HomeScreen from "./Home"
