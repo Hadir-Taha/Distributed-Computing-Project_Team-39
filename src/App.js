@@ -14,23 +14,34 @@ import { v4 as uuidV4 } from 'uuid';
 import HomeScreen from "./Home"
 import TextEditor from "./text-editor"
 
-//defining th different paths & where each path will lead us to
-//path "/" will lead us to the home page
-//path "/rooms" will lead us to the texteditor but with random id
-// path "/rooms/documents/:id" will lead us to the texteditor with specific id for certain document
 function App() {
-//creation of variable docID that will hold empty value at the beginning
-    const [docId, setDocId] = useState('');
+const [docId, setDocId] = useState('');
   return (
-      <Router>
-      <Routes>
-               <Route path="/" element={ <HomeScreen docId={docId} setDocId={setDocId} />} />
-               <Route path="/rooms" element={  <Navigate to={`/rooms/documents/${uuidV4()}`} />} />
-               <Route path="/rooms/documents/:id" element={ <TextEditor />} />
-      </Routes>
-    </Router>
-
-  );
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="w-100" style={{ maxWidth: "400px" }}>
+        <Router>
+          <AuthProvider>
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/home"> <HomeScreen docId={docId} setDocId={setDocId} /> </PrivateRoute>
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route exact path="/rooms">
+          <Redirect to={`/rooms/documents/${uuidV4()}`} />
+        </Route>
+        <Route path="/rooms/documents/:id">
+          <TextEditor />
+        </Route>
+            </Switch>
+          </AuthProvider>
+        </Router>
+      </div>
+    </Container>
+  )
 }
 
-export default App;
+export default App
