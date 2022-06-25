@@ -12,8 +12,10 @@ body {
     width: 100%
 }
 .navbar,.navbar-default {
-    background-color: #e75480;
-    height:50px;
+    background-color: #e75480 !important;
+    height:50px !important;
+    width: 1360px !important;
+    margin-left:-30rem !important;
 }
 .home-card {
   border-radius: 8%;

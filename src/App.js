@@ -1,4 +1,3 @@
-import './App.css';
 import TextEditor from './text-editor';
 import HomeScreen from './Home';
 import {

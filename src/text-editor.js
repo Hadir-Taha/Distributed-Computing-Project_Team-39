@@ -1,81 +1,83 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { useCallback, useEffect, useState } from 'react';
 import 'quill/dist/quill.snow.css';
 import Quill from 'quill';
 import io from 'socket.io-client';
 import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast'
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import './text.css';
 
 import logo from './HomePageLogo.png'
 const HEROKU_ADD = 'https://fresh-edit-server.herokuapp.com/';
 
 const TOOLBAR_OPTIONS = [
-  [{ header: [1, 2, 3, 4, 5, 6, false] }], //different heading styles
-            [{ font: [] }],  //different font types
-            [{ list: "ordered" }, { list: "bullet" }],  //lists types
-            [{ 'direction': 'rtl' }],   //left or right placement of text to be able to write different lang.
-            [{ 'indent': '-1'}, { 'indent': '+1' }],   //indentation of text
-            [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }], //alignment of text
-            [{ size: [ 'small', false, 'large', 'huge' ]}], //another font sizes
-            ["bold", "italic", "underline"], //for different styling of font
-            [{ color: [] }, { background: [] }], //to change text color or the background color
-            [{ script: "sub" }, { script: "super" }], //for making superscript or subscript
-            ["image", "blockquote", "code-block","link","video","formula"], //to add various options rather than text
-            ["clean"],
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  [{ size: ['small', false, 'large', 'huge'] }],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  ['bold', 'italic', 'underline'],
+  [{ color: [] }, { background: [] }],
+  [{ script: 'sub' }, { script: 'super' }],
+  [{ align: [] }],
+  ['image', 'blockquote', 'code-block'],
+  ['clean'],
 ];
-const TextEditor = () => {
-  const [socket, setSocket] = useState(); //variable socket creation with empty initial value
-  const [quill, setQuill] = useState();  //variable quill creation with empty initial value
-  const { id: documentId } = useParams(); //variable id creation that will hold the id of each document
 
-  // creation of the layout of the editor using react-hook functions
+const TextEditor = () => {
+  const [socket, setSocket] = useState();
+  const [quill, setQuill] = useState();
+  const { id: documentId } = useParams();
+  const [show, setShow] = useState(false);
+
+  // setting up the editor
   const WrapperRef = useCallback((wrapper) => {
     if (wrapper === null) return;
     wrapper.innerHTML = '';
     const editor = document.createElement('div');
     wrapper.append(editor);
-    const q = new Quill(editor, {   //creation of q variable that hold tha quill with the following features
-      theme: 'snow',   //to add the tool bar
+    const q = new Quill(editor, {
+      theme: 'snow',
       modules: { toolbar: TOOLBAR_OPTIONS },
       history: {
-        delay: 1500,
+        delay: 2000,
         userOnly: true,
       },
     });
     q.disable();
-    q.setText('');
+    q.setText(' ');
     setQuill(q);
   }, []);
 
-  //connection of the server using socket.io functionalities & react-hook
+  // Setting up the connection to server
   useEffect(() => {
-    const s = io(HEROKU_ADD);  //creating a variable that will hold the URL of the server
+    const s = io(HEROKU_ADD);
     setSocket(s);
     return () => {
       s.disconnect();
     };
   }, []);
 
-  // Recieving the updates and sending them to the server
+  // capturing the changes and sending it to the server
   useEffect(() => {
-    if (socket == null || quill == null) return; //check whether socket & quill have values or no
-    const handler = (delta, oldDelta, source) => {  //handler fn creation with the parameters indicating the updated data, old data & user
+    if (socket == null || quill == null) return;
+    const handler = (delta, oldDelta, source) => {
       if (source !== 'user') return;
-      socket.emit('Transfer-updates to server', delta); //socket send delta(updates) to the server
+      socket.emit('send-changes', delta);
     };
-    quill.on('New-text added', handler); //wait until new updates are made and transfer if to handler
+    quill.on('text-change', handler);
 
     return () => {
-      quill.off('New-text added', handler);
+      quill.off('text-change', handler);
     };
   }, [socket, quill]);
 
-  // update the tenor of the document
+  // update content with the changes made
   useEffect(() => {
-    if (socket == null || quill == null) return; //check whether socket & quill have values or no
+    if (socket == null || quill == null) return;
     const handler = (delta) => {
-      quill.updateContents(delta);  //transfer updates to all users
+      quill.updateContents(delta);
     };
     socket.on('receive-changes', handler);
 
@@ -84,10 +86,10 @@ const TextEditor = () => {
     };
   }, [socket, quill]);
 
-  useEffect(() => {  //for saving new content of document every 1.5 seconds
+  useEffect(() => {
     const interval = setInterval(() => {
-      socket.emit('saving-document', quill.getContents());
-    }, 1500);
+      socket.emit('save-doc', quill.getContents());
+    }, 2000);
 
     return () => {
       clearInterval(interval);
@@ -105,18 +107,20 @@ const TextEditor = () => {
     socket.emit('get-document', documentId);
   }, [socket, quill, documentId]);
 
+
   // html for the text editor
   return (
-<div className="home-card">
 
+<div className="home-cardd"
+>
 <Button className="like_button" onClick={() => {
 
         navigator.clipboard.writeText(documentId)
-      }} style={{ "position": "absolute", "right": 0 }}>
+      }} style={{ "position": "absolute", "right": 0 ,"margin-top":"-0.7in"}}>
         Copy ID
       </Button>
 
-      <Link to="/" className="like_button" style={{ "position": "absolute", "left": 0  }}>Home</Link>
+      <Link to="/" className="like_button" style={{ "position": "absolute", "left": 0 ,"margin-top":"-0.7in" }}>Home</Link>
 
       <div className="container" ref={WrapperRef}></div>
   </div>
@@ -124,3 +128,4 @@ const TextEditor = () => {
 };
 
 export default TextEditor;
+
