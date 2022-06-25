@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Signup from "./Signup"
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./AuthContext"
-import { BrowserRouter as Router, Switch, Route , Navigate} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route , Navigate} from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
