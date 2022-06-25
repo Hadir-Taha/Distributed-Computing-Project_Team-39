@@ -29,7 +29,7 @@ const TextEditor = () => {
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const { id: documentId } = useParams();
-
+  const [show, setShow] = useState(false);
   // setting up the editor
   const WrapperRef = useCallback((wrapper) => {
     if (wrapper === null) return;
@@ -108,15 +108,16 @@ const TextEditor = () => {
 
   // div having the editor
   return (
-    <div>
-      <Button variant="danger" onClick={() => {
+<div className="home-card">
+<Button className="like_button" onClick={() => {
+        setShow(true)
         navigator.clipboard.writeText(documentId)
-      }} style={{ "position": "absolute", "right": 0, "margin-right": "20px" }}>
-        Copy Document ID
+      }} style={{ "position": "absolute", "right": 0 }}>
+        Copy ID
       </Button>
-      <Link to="/" className="btn btn-danger" style={{ "position": "absolute", "margin-left": "110px" }}>Home</Link>
+      <Link to="/" className="like_button" style={{ "position": "absolute", "left": 0  }}>Home</Link>
       <div className="container" ref={WrapperRef}></div>
-    </div>
+  </div>
   );
 };
 
