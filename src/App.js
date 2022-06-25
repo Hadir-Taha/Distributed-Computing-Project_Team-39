@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Signup from "./Signup"
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./AuthContext"
-import { BrowserRouter as Router, Switch, Route , Redirect} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route , Navigate} from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
@@ -32,7 +32,7 @@ const [docId, setDocId] = useState('');
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route exact path="/rooms">
-          <Redirect to={`/rooms/documents/${uuidV4()}`} />
+          <Navigate to={`/rooms/documents/${uuidV4()}`} />
         </Route>
         <Route path="/rooms/documents/:id">
           <TextEditor />
