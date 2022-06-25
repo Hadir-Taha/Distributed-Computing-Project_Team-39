@@ -108,16 +108,16 @@ const TextEditor = () => {
   // html for the text editor
   return (
 <div className="home-card">
-//button to copy the id of the document
+
 <Button className="like_button" onClick={() => {
         setShow(true)
         navigator.clipboard.writeText(documentId)
       }} style={{ "position": "absolute", "right": 0 }}>
         Copy ID
       </Button>
-      //button the refer to the main home page
+
       <Link to="/" className="like_button" style={{ "position": "absolute", "left": 0  }}>Home</Link>
-      //div for holding the main text editor
+
       <div className="container" ref={WrapperRef}></div>
   </div>
   );
