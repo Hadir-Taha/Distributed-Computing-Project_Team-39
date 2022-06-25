@@ -110,7 +110,7 @@ const TextEditor = () => {
 <div className="home-card">
 
 <Button className="like_button" onClick={() => {
-        setShow(true)
+
         navigator.clipboard.writeText(documentId)
       }} style={{ "position": "absolute", "right": 0 }}>
         Copy ID
