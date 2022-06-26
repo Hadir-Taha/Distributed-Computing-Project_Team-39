@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import './text.css';
 
 import logo from './HomePageLogo.png'
-const HEROKU_ADD = 'https://fresh-edit-server.herokuapp.com/';
+const HEROKU_ADD = 'https://git.heroku.com/writeitapp.git';
 
 const TOOLBAR_OPTIONS = [
 [{ header: [1, 2, 3, 4, 5, 6, false] }], //header values to show different font sizes
